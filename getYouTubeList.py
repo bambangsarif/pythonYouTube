@@ -17,7 +17,6 @@ from apiclient.errors import HttpError
 from oauth2client.tools import argparser 
 import pandas as pd 
 
-DEVELOPER_KEY = "AIzaSyBJ5BQnc-Ush-Sxioan2vLXxU5xo133bHM" 
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
@@ -25,8 +24,11 @@ import argparse
 parser = argparse.ArgumentParser(description='parsing search query')
 parser.add_argument("--q", help="Search term", default="Google")
 parser.add_argument("--max-results", help="Max results", default=25)
+parser.add_argument("--key", help="Your YouTube Developer Key")
 args = parser.parse_args()
 options = args
+
+DEVELOPER_KEY = options.key
 
 youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 # Call the search.list method to retrieve results matching the specified
